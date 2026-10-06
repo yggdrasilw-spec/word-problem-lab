@@ -1,0 +1,71 @@
+{
+  "generator": "Built-in image_gen",
+  "purpose": "動きの見本。数値の問題そのものは描かず、問題の数量はコードで表す。",
+  "assets": [
+    {
+      "key": "gather",
+      "prompt": "Use case: scientific-educational. Asset type: elementary math action vignette, a demonstration of the action ONLY, never a picture of the numerical problem. Two children's hands approaching an empty flower vase from left and right, each hand bringing ONE stem, left red flower and right white flower. Clear action of bringing two sources together, no other flowers. Friendly Japanese children's textbook illustration, soft flat colors with clear outlines, cream-white background, wide composition. Each hand belongs to a visible arm and is anatomically natural. Simple, uncluttered, one clear action. No text, numbers, equations, arrows, panels, speech balloons, watermarks or decorative objects. Keep all subjects within frame. Do not depict a numerical answer or totals.",
+      "file": "assets/scenes/gather.png"
+    },
+    {
+      "key": "receive",
+      "prompt": "Use case: scientific-educational. Asset type: elementary math action vignette, a demonstration of the action ONLY, never a picture of the numerical problem. A child on the left holding an open palm, and an adult hand from the right offering ONE wrapped yellow candy toward that palm. Clearly show receiving, no pile of candies, no bowl. Friendly Japanese children's textbook illustration, soft flat colors with clear outlines, cream-white background, wide composition. Each hand belongs to a visible arm and is anatomically natural. Simple, uncluttered, one clear action. No text, numbers, equations, arrows, panels, speech balloons, watermarks or decorative objects. Keep all subjects within frame. Do not depict a numerical answer or totals.",
+      "file": "assets/scenes/receive.png"
+    },
+    {
+      "key": "remove",
+      "prompt": "Use case: scientific-educational. Asset type: elementary math action vignette, a demonstration of the action ONLY, never a picture of the numerical problem. One elementary-age child bringing ONE unwrapped small candy toward their mouth with one hand. The other hand rests near an EMPTY shallow dish on the table. Clearly eating one item, no other food. Friendly Japanese children's textbook illustration, soft flat colors with clear outlines, cream-white background, wide composition. Each hand belongs to a visible arm and is anatomically natural. Simple, uncluttered, one clear action. No text, numbers, equations, arrows, panels, speech balloons, watermarks or decorative objects. Keep all subjects within frame. Do not depict a numerical answer or totals.",
+      "file": "assets/scenes/remove.png"
+    },
+    {
+      "key": "compare",
+      "prompt": "Use case: scientific-educational. Asset type: elementary math action vignette, a demonstration of the action ONLY, never a picture of the numerical problem. Two children facing a tabletop, each putting ONE star sticker in its own adjacent column on a plain sheet. Both star stickers aligned horizontally as ONE matched pair, no extra stickers. Show comparing by pairing, no rulers or scales. Friendly Japanese children's textbook illustration, soft flat colors with clear outlines, cream-white background, wide composition. Each hand belongs to a visible arm and is anatomically natural. Simple, uncluttered, one clear action. No text, numbers, equations, arrows, panels, speech balloons, watermarks or decorative objects. Keep all subjects within frame. Do not depict a numerical answer or totals.",
+      "file": "assets/scenes/compare.png"
+    },
+    {
+      "key": "repeat",
+      "prompt": "Use case: scientific-educational. Asset type: math action demonstration vignette, NOT a numerical problem illustration. A child placing ONE wrapped candy into ONE shallow empty plate. A second empty plate is beside it. The child is preparing repeated equal servings, without showing completed portions. Friendly Japanese children's textbook illustration with soft flat colors, clear outlines, cream-white background, wide composition, anatomically natural hands, ample uncluttered space. No text, numbers, equations, arrows, panels, watermarks, speech balloons, or decorative objects. Avoid depicting completed numerical answers.",
+      "file": "assets/scenes/repeat.png"
+    },
+    {
+      "key": "share",
+      "prompt": "Use case: scientific-educational. Asset type: math action demonstration vignette, NOT a numerical problem illustration. Close view of a child's hand placing ONE yellow wrapped candy into ONE shallow plate, with another EMPTY plate alongside, in a left-to-right serving motion. Demonstrate giving just ONE item per turn to each already placed plate. Show only this one candy, not completed equal servings. Friendly Japanese children's textbook illustration with soft flat colors, clear outlines, cream-white background, wide composition, anatomically natural hands, ample uncluttered space. No text, numbers, equations, arrows, panels, watermarks, speech balloons, or decorative objects. Avoid depicting completed numerical answers.",
+      "file": "assets/scenes/share.png"
+    },
+    {
+      "key": "take",
+      "prompt": "Use case: scientific-educational. Asset type: math action demonstration vignette, NOT a numerical problem illustration. A child's two hands: one hand holds an EMPTY shallow dish ready to receive a portion, the other hand brings a small CLOSED opaque bag toward the dish from a large CLOSED opaque supply bag on the left. The small bag represents one fixed serving without any countable contents. Demonstrate taking out a whole serving, not giving one item in turns. Friendly Japanese children's textbook illustration with soft flat colors, clear outlines, cream-white background, wide composition, anatomically natural hands, ample uncluttered space. No text, numbers, equations, arrows, panels, watermarks, speech balloons, or decorative objects. Avoid depicting completed numerical answers.",
+      "file": "assets/scenes/take.png"
+    },
+    {
+      "key": "cards",
+      "prompt": "Use case: scientific-educational. Asset type: math action demonstration vignette, NOT a numerical problem illustration. A child's hands arranging ONE plain red rectangular card and ONE plain blue rectangular card side by side on a table to make one person's set. Exactly two cards total, blank and clearly distinct, no other cards or people. Friendly Japanese children's textbook illustration with soft flat colors, clear outlines, cream-white background, wide composition, anatomically natural hands, ample uncluttered space. No text, numbers, equations, arrows, panels, watermarks, speech balloons, or decorative objects. Avoid depicting completed numerical answers.",
+      "file": "assets/scenes/cards.png"
+    },
+    {
+      "key": "measure",
+      "prompt": "Use case: scientific-educational. Asset type: elementary mathematical action demonstration, not the actual numerical example. A child's hands laying ONE straight red ribbon beside ONE plain cream reference strip, both laid flat horizontally. Reference strip has no ruler ticks or text. Ribbon endpoints are not aligned to imply any particular length ratio. Show measuring against a reference, not cutting. Friendly Japanese children's textbook illustration, soft flat colors with clear outlines, cream-white background, wide composition, anatomically natural hands, uncluttered. No text, numbers, equations, rulers, measurement ticks, panels, watermarks or decorative extras. Never show numerical results.",
+      "file": "assets/scenes/measure.png"
+    },
+    {
+      "key": "cut",
+      "prompt": "Use case: scientific-educational. Asset type: elementary mathematical action demonstration, not the actual numerical example. Close view of a child's hands using safe scissors to cut one piece from ONE straight blue ribbon on a plain table. One simple cut action, no ruler marks, no repeated completed pieces. Keep scissors away from fingers. Friendly Japanese children's textbook illustration, soft flat colors with clear outlines, cream-white background, wide composition, anatomically natural hands, uncluttered. No text, numbers, equations, rulers, measurement ticks, panels, watermarks or decorative extras. Never show numerical results.",
+      "file": "assets/scenes/cut.png"
+    },
+    {
+      "key": "average",
+      "prompt": "Use case: scientific-educational. Edit target: the provided book redistribution illustration. Keep the single green book being passed between two hands, cream background and textbook style. Replace both cardboard boxes with TWO IDENTICAL, SAME-SIZE shallow OPEN empty trays, placed left and right on the table. Equal physical size and same perspective. No lids, no tall versus short containers, no visible book piles, no numbers. The trays are just containers and must not represent unequal quantities by their size. Keep the clear left-to-right movement of the one book and a small direction arrow. Do not add or remove books: exactly one book being moved. No text or equations.",
+      "file": "assets/scenes/average-v2.png"
+    },
+    {
+      "key": "rate",
+      "prompt": "Use case: scientific-educational. Edit target: the supplied walking scene. Keep the cream background, horizontal footpath, two blank milestone posts, illustration style and one child walking right. Remove FOUR duplicate children completely, leaving exactly ONE child near the middle of the path. Fill the removed positions naturally with the empty path and background. No ghost images, no timeline repetition, no arrows, text, numbers or clocks. This must be an unambiguous scene of one person walking, not five people and not repeated time positions.",
+      "file": "assets/scenes/rate-v2.png"
+    },
+    {
+      "key": "work",
+      "prompt": "Use case: scientific-educational. Asset type: elementary mathematical action demonstration, not the actual numerical example. TWO adults at a shared table, each sorting plain papers into their own EMPTY tray, from the SAME shared opaque closed supply box in the middle. Both adults have the same neutral working posture and activity. Show divisible shared work, no countable paper piles or clocks. Friendly Japanese children's textbook illustration, soft flat colors with clear outlines, cream-white background, wide composition, anatomically natural hands, uncluttered. No text, numbers, equations, rulers, measurement ticks, panels, watermarks or decorative extras. Never show numerical results.",
+      "file": "assets/scenes/work.png"
+    }
+  ]
+}

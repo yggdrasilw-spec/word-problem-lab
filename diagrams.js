@@ -4,6 +4,7 @@
   const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};
   function draw(m){
     const box=el('div',undefined,'learningDiagram');
+    const action=WordProblemActionScenes.draw(m);if(action)box.append(action);
     const q=id=>m.quantities.find(x=>x.id===id);
     const label=id=>`${q(id).label}　${id===m.unknown?'□':q(id).display||E.format(q(id).value)}${q(id).unit}`;
     function dots(count,cross=0,key=WordProblemIllustrations.object(m,'a')||'candy'){
@@ -79,7 +80,7 @@
       const branches=el('div',undefined,'branches');branches.append(el('div','一人分を合わせる → 人数分にする'),el('div','赤を人数分・青を人数分 → 合わせる'));box.append(branches);row('人数',label('c'));row('聞かれた数',label('total'));note('赤い絵と青い絵は一人分。色と人数のどちらからまとめるかを考えよう。');
     }else if(m.kind==='area'){
       row('たてと横',`${label('a')} ／ ${label('b')}`);const grid=el('div',undefined,'unitGrid');const a=q('a').value,b=q('b').value;
-      if(Number.isInteger(a)&&Number.isInteger(b)&&a<=12&&b<=12){grid.style.gridTemplateColumns=`repeat(${b},1fr)`;for(let i=0;i<a*b;i++)grid.append(el('span',''));box.append(grid);note('小さい正方形は1cm²。一列の数と、列の数から数えられるね。');}else note('1cm²の正方形を、たてと横に並べると考えよう。');
+      if(Number.isInteger(a)&&Number.isInteger(b)&&a<=12&&b<=12){grid.style.gridTemplateColumns=`repeat(${b},1fr)`;for(let i=0;i<a*b;i++){const tile=el('span','');tile.append(WordProblemIllustrations.image('unit-square',true));grid.append(tile);}box.append(grid);note('小さい正方形は1cm²。一列の数と、列の数から数えられるね。');}else note('1cm²の正方形を、たてと横に並べると考えよう。');
     }else if(m.kind==='percent'||m.kind==='discount'){
       row('100%に当たる量',label('a'));const bar=el('div',undefined,'percentBar');bar.append(el('span','100%（もとを1）'));box.append(bar);
       if(m.unknown!=='b'){
@@ -95,7 +96,10 @@
     }else if(m.kind==='average'){
       row('一日目・二日目・三日目',`${E.format(m.params[1])}冊 ／ ${E.format(m.params[2])}冊 ／ ${E.format(m.params[0]-m.params[1]-m.params[2])}冊`);
       const columns=el('div',undefined,'averageColumns');[m.params[1],m.params[2],m.params[0]-m.params[1]-m.params[2]].forEach(n=>{const bar=el('div',String(n));bar.style.height=Math.max(20,n*9)+'px';columns.append(bar);});box.append(columns);
-      note('全部の本の数を変えずに、三日とも同じ数になるようにならすよ。');animate('同じ大きさに ならしてみる',()=>[...columns.children].forEach(n=>{n.style.height=Math.max(20,m.answer*9)+'px';n.textContent=E.format(m.answer);}));
+      const piles=el('div',undefined,'bookPiles');
+      function showBooks(values){piles.replaceChildren();values.forEach((n,i)=>{const pile=el('div');pile.append(el('strong',`${i+1}日目`));if(Number.isInteger(n)&&n<=24)pile.append(dots(n,0,'book'));else pile.append(el('p',E.format(n)+'冊'));piles.append(pile);});}
+      showBooks([m.params[1],m.params[2],m.params[0]-m.params[1]-m.params[2]]);box.append(piles);
+      note('全部の本の数を変えずに、三日とも同じ数になるようにならすよ。');animate('同じ大きさに ならしてみる',()=>{[...columns.children].forEach(n=>{n.style.height=Math.max(20,m.answer*9)+'px';n.textContent=E.format(m.answer);});showBooks([m.answer,m.answer,m.answer]);});
     }else if(m.kind==='fractiondiv'){
       row('全部の長さ',label('a'));row('一本分',label('b'));const ribbon=el('div','リボンの全部','ribbon');box.append(ribbon);note('一本分を、同じ長さずつ並べよう。全部に何本分入るかを数えるよ。');
       if(m.answer<=16)animate('一本分ずつ 区切ってみる',()=>{ribbon.replaceChildren();for(let i=0;i<m.answer;i++)ribbon.append(el('span',E.format(q('b').value)+'m'));});

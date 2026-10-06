@@ -1,5 +1,6 @@
 const assert=require('node:assert/strict'),fs=require('node:fs');
 const E=require('../curriculum.js');
+const Scenes=require('../action-scenes.js');
 const {chromium}=require(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const out=process.env.QA_OUTPUT || require('node:path').resolve(__dirname,'../qa-output');fs.mkdirSync(out,{recursive:true});
 let modelChecks=0;
@@ -48,7 +49,16 @@ assert.throws(()=>E.model({kind:'percent',stage:4,params:[7,20]}));
    assert((await page.locator('#storyPictures img').count())>0,l.id+' illustration');
    await page.locator('#storyPictures img').evaluateAll(imgs=>Promise.all(imgs.map(img=>img.decode())));
    assert(await page.locator('#storyPictures img').evaluateAll(imgs=>imgs.every(img=>img.naturalWidth>0)),l.id+' image loading');
-   await page.locator('#hints details').nth(2).locator('summary').click();
+   await page.locator('#hints details').nth(2).locator(':scope > summary').click();
+   const sceneKey=Scenes.keyFor(m);
+   assert.equal(await page.locator('#hints .actionScene').count(),sceneKey?1:0,l.id+' scene mapping');
+   if(sceneKey){
+    await page.locator('#hints .actionScene > summary').click();
+    assert.equal(await page.locator('#hints .actionScene').getAttribute('data-scene'),sceneKey);
+    await page.locator('#hints .actionScene > img').evaluate(img=>img.decode());
+    const asked=page.locator('#hints .askedQuantity');
+    if(Scenes.scenes[sceneKey].roles.length){assert.equal(await asked.count(),1);assert.equal(await asked.getAttribute('data-quantity'),m.unknown);assert((await asked.textContent()).includes('□'));}
+   }
    if(l.id==='equal-share'){
     assert.equal(await page.locator('#hints .plate').count(),3);await page.getByRole('button',{name:'一つずつ 同じ数に配ってみる'}).click();await page.waitForFunction(()=>document.querySelectorAll('#hints .plate .dots span').length===12);assert.equal(await page.locator('#hints .plate .dots span').count(),12);await page.waitForTimeout(650);
     assert.equal(await page.locator('#hints .plate .dots img').count(),12);assert.equal(await page.locator('#hints .dots img').count(),12);
@@ -58,7 +68,7 @@ assert.throws(()=>E.model({kind:'percent',stage:4,params:[7,20]}));
    if(l.id==='flowers'){assert.equal(await page.locator('#hints img[src$="red-flower.png"]').count(),4);assert.equal(await page.locator('#hints img[src$="white-flower.png"]').count(),3);await page.screenshot({path:out+'/grade1-flowers-desktop.png',fullPage:true});}
    if(l.id==='candy-left'){assert.equal(await page.locator('#hints .dots > span').count(),8);assert.equal(await page.locator('#hints .eaten').count(),3);}
    if(l.id==='stickers'){assert.equal(await page.locator('#hints .comparisonPairs img').count(),13);assert.equal(await page.locator('#hints .unpaired').count(),3);}
-   if(l.id==='average-books'){assert(!(await page.locator('#knownNumbers').textContent()).includes('三日間の合計'));await page.getByRole('button',{name:'同じ大きさに ならしてみる'}).click();assert.deepEqual(await page.locator('#hints .averageColumns div').allTextContents(),['5','5','5']);}
+   if(l.id==='average-books'){assert(!(await page.locator('#knownNumbers').textContent()).includes('三日間の合計'));assert.equal(await page.locator('#hints .bookPiles img').count(),15);await page.getByRole('button',{name:'同じ大きさに ならしてみる'}).click();assert.deepEqual(await page.locator('#hints .averageColumns div').allTextContents(),['5','5','5']);assert.equal(await page.locator('#hints .bookPiles img').count(),15);for(const pile of await page.locator('#hints .bookPiles > div').all())assert.equal(await pile.locator('img').count(),5);await page.screenshot({path:out+'/grade5-average-scenes.png',fullPage:true});}
    if(l.id==='fraction-pieces'){await page.getByRole('button',{name:'一本分ずつ 区切ってみる'}).click();assert.equal(await page.locator('#hints .ribbon span').count(),6);}
    if(l.id==='percentage-part')await page.screenshot({path:out+'/grade5-percent-desktop.png',fullPage:true});
    if(l.id==='ratio-parts')await page.screenshot({path:out+'/grade6-ratio-desktop.png',fullPage:true});
@@ -84,8 +94,8 @@ assert.throws(()=>E.model({kind:'percent',stage:4,params:[7,20]}));
   assert((await page.locator('#stageStatus').textContent()).includes('6年生まで'));
   await page.reload();assert((await page.locator('#stageLabel').textContent()).startsWith('6年'));
   await page.setViewportSize({width:390,height:844});
-  for(const id of['fraction-times','ratio-parts','inverse-workers','percentage-base','equal-share']){
-   await select(E.lessons.find(l=>l.id===id));await page.locator('#hints details').nth(2).locator('summary').click();assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),id+' overflow');await page.screenshot({path:out+'/'+id+'-mobile.png',fullPage:true});
+  for(const id of['fraction-times','ratio-parts','inverse-workers','percentage-base','equal-share','flowers','before-eating','average-books']){
+   await select(E.lessons.find(l=>l.id===id));await page.locator('#hints details').nth(2).locator(':scope > summary').click();if(await page.locator('#hints .actionScene').count()){await page.locator('#hints .actionScene > summary').click();await page.locator('#hints .actionScene > img').evaluate(img=>img.decode());}assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),id+' overflow');await page.screenshot({path:out+'/'+id+'-mobile.png',fullPage:true});
   }
   await page.locator('.teacher summary').click();await page.locator('#clearProgress').click();activeStage=0;
   assert(await page.locator('#advanceStage').isHidden());assert(await page.locator('#createMode').isDisabled());assert.equal(await page.locator('#lessonSelect option').count(),1);

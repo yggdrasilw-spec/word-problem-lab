@@ -1,0 +1,398 @@
+[
+  {
+    "id": "flowers",
+    "grade": 1,
+    "title": "花を かざろう",
+    "unknown": "花ぜんぶ",
+    "scene": "gather",
+    "diagram": "additive",
+    "purpose": "合わせた数・ふえたあとの数は、たしざんで。のこりや、二つの数のちがいは、ひきざんで考えられるよ。何の数を聞かれているかも確かめよう。"
+  },
+  {
+    "id": "candy-more",
+    "grade": 1,
+    "title": "あめを もらったよ",
+    "unknown": "あと",
+    "scene": "receive",
+    "diagram": "additive",
+    "purpose": "合わせた数・ふえたあとの数は、たしざんで。のこりや、二つの数のちがいは、ひきざんで考えられるよ。何の数を聞かれているかも確かめよう。"
+  },
+  {
+    "id": "candy-left",
+    "grade": 1,
+    "title": "あめを 食べたよ",
+    "unknown": "のこり",
+    "scene": "remove",
+    "diagram": "additive",
+    "purpose": "合わせた数・ふえたあとの数は、たしざんで。のこりや、二つの数のちがいは、ひきざんで考えられるよ。何の数を聞かれているかも確かめよう。"
+  },
+  {
+    "id": "stickers",
+    "grade": 1,
+    "title": "シールを くらべよう",
+    "unknown": "ちがい",
+    "scene": "compare",
+    "diagram": "additive",
+    "purpose": "合わせた数・ふえたあとの数は、たしざんで。のこりや、二つの数のちがいは、ひきざんで考えられるよ。何の数を聞かれているかも確かめよう。"
+  },
+  {
+    "id": "before-eating",
+    "grade": 2,
+    "title": "食べる前は？",
+    "unknown": "はじめ",
+    "scene": "remove",
+    "diagram": "additive",
+    "purpose": "へるお話でも、はじめの数を聞かれることがあるよ。全体を知りたいなら部分を合わせ、部分を知りたいなら全体からほかの部分をひこう。"
+  },
+  {
+    "id": "before-receiving",
+    "grade": 2,
+    "title": "もらう前は？",
+    "unknown": "はじめ",
+    "scene": "receive",
+    "diagram": "additive",
+    "purpose": "へるお話でも、はじめの数を聞かれることがあるよ。全体を知りたいなら部分を合わせ、部分を知りたいなら全体からほかの部分をひこう。"
+  },
+  {
+    "id": "received",
+    "grade": 2,
+    "title": "もらった数は？",
+    "unknown": "もらった",
+    "scene": "receive",
+    "diagram": "additive",
+    "purpose": "へるお話でも、はじめの数を聞かれることがあるよ。全体を知りたいなら部分を合わせ、部分を知りたいなら全体からほかの部分をひこう。"
+  },
+  {
+    "id": "eaten",
+    "grade": 2,
+    "title": "食べた数は？",
+    "unknown": "食べた",
+    "scene": "remove",
+    "diagram": "additive",
+    "purpose": "へるお話でも、はじめの数を聞かれることがあるよ。全体を知りたいなら部分を合わせ、部分を知りたいなら全体からほかの部分をひこう。"
+  },
+  {
+    "id": "white",
+    "grade": 2,
+    "title": "白い花は？",
+    "unknown": "白い花",
+    "scene": "gather",
+    "diagram": "additive",
+    "purpose": "へるお話でも、はじめの数を聞かれることがあるよ。全体を知りたいなら部分を合わせ、部分を知りたいなら全体からほかの部分をひこう。"
+  },
+  {
+    "id": "red",
+    "grade": 2,
+    "title": "赤い花は？",
+    "unknown": "赤い花",
+    "scene": "gather",
+    "diagram": "additive",
+    "purpose": "へるお話でも、はじめの数を聞かれることがあるよ。全体を知りたいなら部分を合わせ、部分を知りたいなら全体からほかの部分をひこう。"
+  },
+  {
+    "id": "more-stickers",
+    "grade": 2,
+    "title": "そうたさんの数は？",
+    "unknown": "そうたさん",
+    "scene": "compare",
+    "diagram": "additive",
+    "purpose": "へるお話でも、はじめの数を聞かれることがあるよ。全体を知りたいなら部分を合わせ、部分を知りたいなら全体からほかの部分をひこう。"
+  },
+  {
+    "id": "fewer-stickers",
+    "grade": 2,
+    "title": "ゆいさんの数は？",
+    "unknown": "ゆいさん",
+    "scene": "compare",
+    "diagram": "additive",
+    "purpose": "へるお話でも、はじめの数を聞かれることがあるよ。全体を知りたいなら部分を合わせ、部分を知りたいなら全体からほかの部分をひこう。"
+  },
+  {
+    "id": "same-groups",
+    "grade": 2,
+    "title": "同じ数ずつの お皿",
+    "unknown": "ぜんぶ",
+    "scene": "repeat",
+    "diagram": "groups",
+    "purpose": "同じ数ずつのまとまりは、一つ分の数と、いくつ分かを使って、かけざんで表せるよ。"
+  },
+  {
+    "id": "groups-repeat",
+    "grade": 2,
+    "title": "同じ数を 足すと？",
+    "unknown": "ぜんぶ",
+    "scene": "repeat",
+    "diagram": "groups",
+    "purpose": "同じ数ずつのまとまりは、一つ分の数と、いくつ分かを使って、かけざんで表せるよ。"
+  },
+  {
+    "id": "integer-times",
+    "grade": 2,
+    "title": "何倍の 長さ？",
+    "unknown": "比べる長さ",
+    "scene": "measure",
+    "diagram": "correspondence",
+    "purpose": "差ではなく、もとの長さがいくつ分あるかで比べるとき、倍を使うよ。"
+  },
+  {
+    "id": "equal-share",
+    "grade": 3,
+    "title": "一人分は いくつ？",
+    "unknown": "一皿分",
+    "scene": "share",
+    "diagram": "groups",
+    "purpose": "全部を、分かっているお皿の数に同じ数ずつ配ろう。一皿にいくつ入るかを求めるわりざんだよ。"
+  },
+  {
+    "id": "how-many-groups",
+    "grade": 3,
+    "title": "何皿に 分けられる？",
+    "unknown": "お皿の数",
+    "scene": "take",
+    "diagram": "groups",
+    "purpose": "一皿に入れる数を決めて、同じ数ずつ取り分けよう。何皿できるかを求めるわりざんだよ。"
+  },
+  {
+    "id": "times-unknown",
+    "grade": 3,
+    "title": "何倍に なっている？",
+    "unknown": "何倍",
+    "scene": "measure",
+    "diagram": "correspondence",
+    "purpose": "差ではなく、もとの長さがいくつ分あるかで比べるとき、倍を使うよ。"
+  },
+  {
+    "id": "times-base",
+    "grade": 3,
+    "title": "もとの長さは？",
+    "unknown": "もとの長さ",
+    "scene": "measure",
+    "diagram": "correspondence",
+    "purpose": "差ではなく、もとの長さがいくつ分あるかで比べるとき、倍を使うよ。"
+  },
+  {
+    "id": "two-step",
+    "grade": 3,
+    "title": "先に一人分を 求めよう",
+    "unknown": "カードぜんぶ",
+    "scene": "cards",
+    "diagram": "compound",
+    "purpose": "先に一人分を求めても、赤と青を別々に求めてもよいよ。途中で求める数にも名前をつけよう。"
+  },
+  {
+    "id": "decimal-length",
+    "grade": 3,
+    "title": "小数の長さを 合わせる",
+    "unknown": "合わせた長さ",
+    "scene": "measure",
+    "diagram": "additive",
+    "purpose": "小数でも、同じ種類の量を合わせるときは足せるよ。数の表し方が変わっても、合わせる関係は同じだね。"
+  },
+  {
+    "id": "two-paths",
+    "grade": 4,
+    "title": "二つの道筋を 一つの式に",
+    "unknown": "カードぜんぶ",
+    "scene": "cards",
+    "diagram": "compound",
+    "purpose": "先に一人分を求めても、赤と青を別々に求めてもよいよ。途中の数に名前をつけ、かっこで式をまとめよう。"
+  },
+  {
+    "id": "rectangle-area",
+    "grade": 4,
+    "title": "1cm²が いくつ分？",
+    "unknown": "面積",
+    "scene": null,
+    "diagram": "area",
+    "purpose": "面積は、1cm²の正方形がいくつ分あるかで考えるよ。たてと横の長さから、その数を求められるね。"
+  },
+  {
+    "id": "decimal-integer",
+    "grade": 4,
+    "title": "小数でも 同じ一つ分",
+    "unknown": "全長",
+    "scene": "measure",
+    "diagram": "correspondence",
+    "purpose": "一本の長さが小数でも、同じ長さが何本分あるかを考えられるよ。"
+  },
+  {
+    "id": "decimal-times",
+    "grade": 4,
+    "title": "差と倍は どうちがう？",
+    "unknown": "比べる長さ",
+    "scene": "measure",
+    "diagram": "correspondence",
+    "purpose": "差ではなく、もとの長さがいくつ分あるかで比べるとき、倍を使うよ。"
+  },
+  {
+    "id": "decimal-ratio",
+    "grade": 4,
+    "title": "小数で 何倍？",
+    "unknown": "何倍",
+    "scene": "measure",
+    "diagram": "correspondence",
+    "purpose": "倍が小数でも、もとの量を1として、その何倍かを考えられるよ。"
+  },
+  {
+    "id": "small-multiplier",
+    "grade": 5,
+    "title": "1より小さい 倍",
+    "unknown": "比べる長さ",
+    "scene": "measure",
+    "diagram": "correspondence",
+    "purpose": "倍が小数でも、もとの量を1として、その何倍かを考えられるよ。"
+  },
+  {
+    "id": "decimal-price",
+    "grade": 5,
+    "title": "1mの代金と 小数の長さ",
+    "unknown": "代金ぜんぶ",
+    "scene": "measure",
+    "diagram": "correspondence",
+    "purpose": "1m分の代金と、何m分かを対応させて考えよう。"
+  },
+  {
+    "id": "unit-price-unknown",
+    "grade": 5,
+    "title": "1m当たりは いくら？",
+    "unknown": "1mの代金",
+    "scene": "measure",
+    "diagram": "correspondence",
+    "purpose": "1m分の代金と、何m分かを対応させて考えよう。"
+  },
+  {
+    "id": "percentage-part",
+    "grade": 5,
+    "title": "20%に当たる 人数",
+    "unknown": "比べる量",
+    "scene": null,
+    "diagram": "percent",
+    "purpose": "もとにする量を100%（1）と考えよう。割合・もとにする量・比べる量の、どれを聞いているかを確かめるよ。"
+  },
+  {
+    "id": "percentage-base",
+    "grade": 5,
+    "title": "もとにする人数は？",
+    "unknown": "もとにする量",
+    "scene": null,
+    "diagram": "percent",
+    "purpose": "もとにする量を100%（1）と考えよう。割合・もとにする量・比べる量の、どれを聞いているかを確かめるよ。"
+  },
+  {
+    "id": "percentage-rate",
+    "grade": 5,
+    "title": "何%に 当たる？",
+    "unknown": "割合",
+    "scene": null,
+    "diagram": "percent",
+    "purpose": "もとにする量を100%（1）と考えよう。割合・もとにする量・比べる量の、どれを聞いているかを確かめるよ。"
+  },
+  {
+    "id": "discount",
+    "grade": 5,
+    "title": "20%引きの 代金",
+    "unknown": "払う代金",
+    "scene": null,
+    "diagram": "percent",
+    "purpose": "もとにする量を100%（1）と考えよう。割合・もとにする量・比べる量の、どれを聞いているかを確かめるよ。"
+  },
+  {
+    "id": "average-books",
+    "grade": 5,
+    "title": "一日当たりに ならす",
+    "unknown": "一日当たりの平均",
+    "scene": "average",
+    "diagram": "average",
+    "purpose": "平均は、合計を同じ大きさにならして、一つ分を求める考え方だよ。"
+  },
+  {
+    "id": "constant-speed",
+    "grade": 5,
+    "title": "速さと時間から 道のり",
+    "unknown": "道のり",
+    "scene": "rate",
+    "diagram": "correspondence",
+    "purpose": "1時間当たりの道のりが速さ。一定の速さでは、時間と道のりが対応するよ。"
+  },
+  {
+    "id": "speed-time",
+    "grade": 5,
+    "title": "道のりから 時間",
+    "unknown": "時間",
+    "scene": "rate",
+    "diagram": "correspondence",
+    "purpose": "1時間当たりの道のりが速さ。一定の速さでは、時間と道のりが対応するよ。"
+  },
+  {
+    "id": "fraction-times",
+    "grade": 6,
+    "title": "分数の倍でも 同じ関係",
+    "unknown": "比べる長さ",
+    "scene": "measure",
+    "diagram": "correspondence",
+    "purpose": "何倍かが分数でも、もとの量と比べる量の関係を使うよ。1より小さい数をかけると小さくなるね。"
+  },
+  {
+    "id": "fraction-base",
+    "grade": 6,
+    "title": "分数の倍から もとを求める",
+    "unknown": "もとの長さ",
+    "scene": "measure",
+    "diagram": "correspondence",
+    "purpose": "何倍かが分数でも、もとの量と比べる量の関係を使うよ。1より小さい数をかけると小さくなるね。"
+  },
+  {
+    "id": "fraction-pieces",
+    "grade": 6,
+    "title": "一本分が分数の リボン",
+    "unknown": "本数",
+    "scene": "cut",
+    "diagram": "groups",
+    "purpose": "一本分が分数でも、全部の長さに一本分がいくつ入るかを考えると、わりざんを使えるよ。"
+  },
+  {
+    "id": "ratio-parts",
+    "grade": 6,
+    "title": "比の一つ分を 見つける",
+    "unknown": "赤の数",
+    "scene": null,
+    "diagram": "ratio",
+    "purpose": "比の数を、そのまま個数と思わず、一つ分のまとまりと考えよう。比の合計から、一つ分を求められるよ。"
+  },
+  {
+    "id": "ratio-other",
+    "grade": 6,
+    "title": "全体に対する割合で 考える",
+    "unknown": "赤の数",
+    "scene": null,
+    "diagram": "ratio",
+    "purpose": "比の数を、そのまま個数と思わず、一つ分のまとまりと考えよう。比の合計から、一つ分を求められるよ。"
+  },
+  {
+    "id": "proportional-cost",
+    "grade": 6,
+    "title": "冊数と代金の 比例",
+    "unknown": "代金ぜんぶ",
+    "scene": null,
+    "diagram": "proportion",
+    "purpose": "1冊の代金が一定で、追加の料金がないとき、冊数と代金は比例するよ。"
+  },
+  {
+    "id": "proportional-count",
+    "grade": 6,
+    "title": "比例の関係を 逆に使う",
+    "unknown": "冊数",
+    "scene": null,
+    "diagram": "proportion",
+    "purpose": "1冊の代金が一定で、追加の料金がないとき、冊数と代金は比例するよ。"
+  },
+  {
+    "id": "inverse-workers",
+    "grade": 6,
+    "title": "人数と時間の 反比例",
+    "unknown": "かかる時間",
+    "scene": "work",
+    "diagram": "inverse",
+    "purpose": "同じ仕事を、同じ速さで分担すると、人数×時間が一定になるよ。この条件で人数と時間は反比例するね。"
+  }
+]
