@@ -1,6 +1,11 @@
 const assert=require('node:assert/strict'),fs=require('node:fs');
 const E=require('../curriculum.js');
 const Scenes=require('../action-scenes.js');
+const Guides=require('../interactive-guides.js');
+assert.equal(Guides.percentFill(47.5).filter(x=>x===1).length,47);
+assert.equal(Guides.percentFill(47.5).filter(x=>x===0.5).length,1);
+assert.equal(Guides.percentFill(47.5).reduce((a,b)=>a+b,0),47.5);
+assert.throws(()=>Guides.percentFill(101));
 const {chromium}=require(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const out=process.env.QA_OUTPUT || require('node:path').resolve(__dirname,'../qa-output');fs.mkdirSync(out,{recursive:true});
 let modelChecks=0;
@@ -50,6 +55,41 @@ assert.throws(()=>E.model({kind:'percent',stage:4,params:[7,20]}));
    await page.locator('#storyPictures img').evaluateAll(imgs=>Promise.all(imgs.map(img=>img.decode())));
    assert(await page.locator('#storyPictures img').evaluateAll(imgs=>imgs.every(img=>img.naturalWidth>0)),l.id+' image loading');
    await page.locator('#hints details').nth(2).locator(':scope > summary').click();
+   const guide=page.locator('#hints .interactiveGuide');
+   const guideExpected=['area','percent','discount','ratio','proportion'].includes(m.kind);
+   assert.equal(await guide.count(),guideExpected?1:0,l.id+' guided diagram');
+   if(guideExpected){
+    await guide.locator(':scope > summary').click();
+    if(m.kind==='percent'||m.kind==='discount'){
+     assert(await guide.locator('.percentExplore').isHidden());
+     await guide.locator('[data-base=total]').click();assert(await guide.locator('.percentExplore').isHidden());
+     await guide.locator('[data-base=a]').click();assert(await guide.locator('.percentExplore').isVisible());
+     assert.equal(await guide.locator('.hundredGrid > span').count(),100);
+     assert(await guide.locator('.hundredGrid').evaluate(node=>getComputedStyle(node).display==='grid'&&node.getBoundingClientRect().height>200),'percentage grid must be visible');
+     if(m.unknown==='b'){assert.equal(await guide.locator('.hundredGrid').getAttribute('aria-label'),'100%の枠。色を付ける割合はまだ分からない。');await guide.getByRole('button',{name:'人数から、割合の図をたしかめる'}).click();}
+     assert.equal(await guide.locator('.hundredGrid > span').evaluateAll(cells=>cells.reduce((sum,x)=>sum+Number(x.dataset.fill),0)),m.params[1]);
+     if(m.unknown==='a')assert(!(await guide.locator('.percentExplore').textContent()).includes('200人'));
+     if(m.kind==='discount'){await guide.getByRole('button',{name:'値引きと、払う分を分けて見る'}).click();assert((await guide.locator('.guideStatus').textContent()).includes('80%'));}
+    }
+    if(m.kind==='ratio'){
+     assert.equal(await guide.locator('.guideBeads').count(),0);
+     await guide.getByRole('button',{name:'同じ一つ分を、全部から求める'}).click();
+     const parts=m.params[0]+m.params[1],unit=m.params[2]/parts;
+     assert.equal(await guide.locator('.exploreRatio > div').count(),parts);
+     assert.equal(await guide.locator('.guideBeads img').count(),m.params[2]);
+     for(const group of await guide.locator('.guideBeads').all())assert.equal(await group.locator('img').count(),unit);
+    }
+    if(m.kind==='proportion'){
+     await guide.locator('button[data-count="2"]').click();assert.equal(await guide.locator('.activeCorrespondence').count(),2);assert((await guide.locator('table').textContent()).includes('160円'));
+     await guide.locator('button[data-count="3"]').click();assert.equal(await guide.locator('.activeCorrespondence').count(),2);assert((await guide.locator('table').textContent()).includes('240円'));
+    }
+    if(m.kind==='area'){
+     assert.equal(await guide.locator('.countedSquare').count(),0);await guide.getByRole('button',{name:'一列ずつ、数えてみる'}).click();assert.equal(await guide.locator('.countedSquare').count(),m.params[1]);
+     for(let i=1;i<m.params[0];i++)await guide.getByRole('button',{name:'一列ずつ、数えてみる'}).click();assert.equal(await guide.locator('.countedSquare').count(),24);
+     await guide.getByRole('button',{name:'はじめから見る'}).click();assert.equal(await guide.locator('.countedSquare').count(),0);
+    }
+    await guide.screenshot({path:out+'/'+l.id+'-interactive.png'});
+   }
    const sceneKey=Scenes.keyFor(m);
    assert.equal(await page.locator('#hints .actionScene').count(),sceneKey?1:0,l.id+' scene mapping');
    if(sceneKey){
@@ -92,10 +132,22 @@ assert.throws(()=>E.model({kind:'percent',stage:4,params:[7,20]}));
    }
   }
   assert((await page.locator('#stageStatus').textContent()).includes('6年生まで'));
+  // Custom percentages can have a partially filled 1% cell.
+  await page.evaluate(()=>{const model=WordProblemEngine.model({id:'custom',stage:4,kind:'percent',params:[200,47.5],unknown:'total'});const guide=WordProblemInteractiveGuides.draw(model);guide.id='guideFixture';guide.open=true;document.body.append(guide);});
+  await page.locator('#guideFixture [data-base=a]').click();assert.equal(await page.locator('#guideFixture [data-fill="0.5"]').count(),1);assert.equal(await page.locator('#guideFixture .hundredGrid > span').evaluateAll(cells=>cells.reduce((sum,x)=>sum+Number(x.dataset.fill),0)),47.5);await page.locator('#guideFixture').evaluate(node=>node.remove());
   await page.reload();assert((await page.locator('#stageLabel').textContent()).startsWith('6年'));
   await page.setViewportSize({width:390,height:844});
-  for(const id of['fraction-times','ratio-parts','inverse-workers','percentage-base','equal-share','flowers','before-eating','average-books']){
-   await select(E.lessons.find(l=>l.id===id));await page.locator('#hints details').nth(2).locator(':scope > summary').click();if(await page.locator('#hints .actionScene').count()){await page.locator('#hints .actionScene > summary').click();await page.locator('#hints .actionScene > img').evaluate(img=>img.decode());}assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),id+' overflow');await page.screenshot({path:out+'/'+id+'-mobile.png',fullPage:true});
+  for(const id of['fraction-times','ratio-parts','inverse-workers','percentage-base','equal-share','flowers','before-eating','average-books','rectangle-area','proportional-cost']){
+   await select(E.lessons.find(l=>l.id===id));await page.locator('#hints details').nth(2).locator(':scope > summary').click();if(await page.locator('#hints .actionScene').count()){await page.locator('#hints .actionScene > summary').click();await page.locator('#hints .actionScene > img').evaluate(img=>img.decode());}
+   const guide=page.locator('#hints .interactiveGuide');if(await guide.count()){
+    await guide.locator(':scope > summary').click();
+    if(id==='percentage-base')await guide.locator('[data-base=a]').click();
+    if(id==='ratio-parts'){await guide.getByRole('button',{name:'同じ一つ分を、全部から求める'}).click();const widths=await guide.locator('.exploreRatio > div').evaluateAll(nodes=>nodes.map(x=>x.getBoundingClientRect().width));assert(Math.max(...widths)-Math.min(...widths)<1,'equal ratio units must have equal widths');}
+    if(id==='proportional-cost')await guide.locator('button[data-count="2"]').click();
+    if(id==='rectangle-area')await guide.getByRole('button',{name:'一列ずつ、数えてみる'}).click();
+    await guide.screenshot({path:out+'/'+id+'-interactive-mobile.png'});
+   }
+   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),id+' overflow');await page.screenshot({path:out+'/'+id+'-mobile.png',fullPage:true});
   }
   await page.locator('.teacher summary').click();await page.locator('#clearProgress').click();activeStage=0;
   assert(await page.locator('#advanceStage').isHidden());assert(await page.locator('#createMode').isDisabled());assert.equal(await page.locator('#lessonSelect option').count(),1);

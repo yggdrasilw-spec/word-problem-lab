@@ -115,6 +115,7 @@
       bottom.append(el('th',q('total').label),el('td',m.unknown==='a'?'□':E.format(q('a').value)),el('td',m.unknown==='total'?'□':E.format(q('total').value)));table.append(top,bottom);box.append(table);
       note(m.kind==='speed'?'速さは1時間当たりの道のり。時間と道のりの単位をそろえよう。':'上下の数を対応させて、一つ分・いくつ分・全部のどれが未知かを見よう。');
     }
+    const guide=WordProblemInteractiveGuides.draw(m);if(guide)box.append(guide);
     return box;
   }
   root.WordProblemDiagrams={draw};
