@@ -1,0 +1,92 @@
+{
+  "generator": "Built-in image_gen",
+  "transparent_background": true,
+  "purpose": "数量はコードで制御。生成画像に数値・式・目盛りを含めず、一つの物の素材として使う。",
+  "assets": [
+    {
+      "key": "candy",
+      "file": "assets/illustrations/candy.png",
+      "prompt": "Use case: scientific-educational. Asset type: reusable counting manipulative for a Japanese elementary word-problem app. Create ONE isolated wrapped candy, horizontal twisted-paper wrapper, warm golden-yellow wrapper with a simple cream stripe, softly rounded children's textbook illustration with clear dark outlines, flat colors and slight paper softness, front view, centered with generous transparent margin. Object must be easily countable at 32px. No text, no numbers, no equations, no characters, no background, no shadow outside object. Genuine transparent background. This is a single object, never multiple candies."
+    },
+    {
+      "key": "red-flower",
+      "file": "assets/illustrations/red-flower.png",
+      "prompt": "Use case: scientific-educational. Asset type: single counting manipulative for a Japanese elementary word-problem app. Create ONE red flower on a short green stem, front view, five simple petals, clearly red. Soft children's textbook illustration with clear dark outlines, flat colors and gentle paper softness. Centered, front view, one isolated object, generous transparent margin, easily countable at 32px. No text, numbers, equations, faces, background or exterior shadow. Genuine transparent background. Never duplicate the object."
+    },
+    {
+      "key": "white-flower",
+      "file": "assets/illustrations/white-flower.png",
+      "prompt": "Use case: scientific-educational. Asset type: single counting manipulative for a Japanese elementary word-problem app. Create ONE white flower on a short green stem, front view, five simple petals, white petals outlined distinctly. Soft children's textbook illustration with clear dark outlines, flat colors and gentle paper softness. Centered, front view, one isolated object, generous transparent margin, easily countable at 32px. No text, numbers, equations, faces, background or exterior shadow. Genuine transparent background. Never duplicate the object."
+    },
+    {
+      "key": "sticker",
+      "file": "assets/illustrations/sticker.png",
+      "prompt": "Use case: scientific-educational. Asset type: single counting manipulative for a Japanese elementary word-problem app. Create ONE golden-yellow five-pointed star sticker with a subtle cream paper border, face-on. Soft children's textbook illustration with clear dark outlines, flat colors and gentle paper softness. Centered, front view, one isolated object, generous transparent margin, easily countable at 32px. No text, numbers, equations, faces, background or exterior shadow. Genuine transparent background. Never duplicate the object."
+    },
+    {
+      "key": "red-card",
+      "file": "assets/illustrations/red-card.png",
+      "prompt": "Use case: scientific-educational. Asset type: reusable single-object teaching illustration for Japanese elementary math. Create ONE plain red rectangular learning card, rounded corners, face-on, no writing. Soft children's textbook illustration with clear dark outlines, flat colors and gentle paper softness. One isolated object centered with generous transparent margin. Easily recognizable at 36px. No text, numbers, equations, faces, background or exterior shadow. Genuine transparent background. Exactly one object, no stacks or duplicates."
+    },
+    {
+      "key": "blue-card",
+      "file": "assets/illustrations/blue-card.png",
+      "prompt": "Use case: scientific-educational. Asset type: reusable single-object teaching illustration for Japanese elementary math. Create ONE plain blue rectangular learning card, rounded corners, face-on, no writing. Soft children's textbook illustration with clear dark outlines, flat colors and gentle paper softness. One isolated object centered with generous transparent margin. Easily recognizable at 36px. No text, numbers, equations, faces, background or exterior shadow. Genuine transparent background. Exactly one object, no stacks or duplicates."
+    },
+    {
+      "key": "book",
+      "file": "assets/illustrations/book.png",
+      "prompt": "Use case: scientific-educational. Asset type: reusable single-object teaching illustration for Japanese elementary math. Create ONE closed library storybook, green cover, clearly visible cream page block, slightly three-quarter view, no writing. Soft children's textbook illustration with clear dark outlines, flat colors and gentle paper softness. One isolated object centered with generous transparent margin. Easily recognizable at 36px. No text, numbers, equations, faces, background or exterior shadow. Genuine transparent background. Exactly one object, no stacks or duplicates."
+    },
+    {
+      "key": "notebook",
+      "file": "assets/illustrations/notebook.png",
+      "prompt": "Use case: scientific-educational. Asset type: reusable single-object teaching illustration for Japanese elementary math. Create ONE closed school notebook, pale blue cover, a narrow binding at the left, front view, no writing. Soft children's textbook illustration with clear dark outlines, flat colors and gentle paper softness. One isolated object centered with generous transparent margin. Easily recognizable at 36px. No text, numbers, equations, faces, background or exterior shadow. Genuine transparent background. Exactly one object, no stacks or duplicates."
+    },
+    {
+      "key": "red-ribbon",
+      "file": "assets/illustrations/red-ribbon.png",
+      "prompt": "Use case: scientific-educational. Asset type: object sample for elementary mathematical quantities. Create ONE short straight red cloth ribbon strip, horizontal, squared ends, completely flat, no bow or spool. Soft children's textbook illustration, clear dark outlines, flat colors, gentle paper softness. One isolated centered object with generous transparent margin. No text, numbers, measurement ticks, equations, faces, background or exterior shadow. Genuine transparent background. Exactly one object. This illustration is a sample, not a scale or numerical diagram."
+    },
+    {
+      "key": "blue-ribbon",
+      "file": "assets/illustrations/blue-ribbon.png",
+      "prompt": "Use case: scientific-educational. Asset type: object sample for elementary mathematical quantities. Create ONE short straight blue cloth ribbon strip, horizontal, squared ends, completely flat, no bow or spool. Soft children's textbook illustration, clear dark outlines, flat colors, gentle paper softness. One isolated centered object with generous transparent margin. No text, numbers, measurement ticks, equations, faces, background or exterior shadow. Genuine transparent background. Exactly one object. This illustration is a sample, not a scale or numerical diagram."
+    },
+    {
+      "key": "red-bead",
+      "file": "assets/illustrations/red-bead.png",
+      "prompt": "Use case: scientific-educational. Asset type: object sample for elementary mathematical quantities. Create ONE red round wooden bead, front view, a small clearly visible threading hole, not candy or fruit. Soft children's textbook illustration, clear dark outlines, flat colors, gentle paper softness. One isolated centered object with generous transparent margin. No text, numbers, measurement ticks, equations, faces, background or exterior shadow. Genuine transparent background. Exactly one object. This illustration is a sample, not a scale or numerical diagram."
+    },
+    {
+      "key": "white-bead",
+      "file": "assets/illustrations/white-bead.png",
+      "prompt": "Use case: scientific-educational. Asset type: object sample for elementary mathematical quantities. Create ONE ivory-white round wooden bead, front view, a small clearly visible threading hole, not candy or fruit. Soft children's textbook illustration, clear dark outlines, flat colors, gentle paper softness. One isolated centered object with generous transparent margin. No text, numbers, measurement ticks, equations, faces, background or exterior shadow. Genuine transparent background. Exactly one object. This illustration is a sample, not a scale or numerical diagram."
+    },
+    {
+      "key": "unit-square",
+      "file": "assets/illustrations/unit-square.png",
+      "prompt": "Use case: scientific-educational. Asset type: simple reusable object sample for a Japanese elementary word-problem app. Create ONE flat square measurement tile, face-on, pale green fill, crisp dark-green square outline, perfectly straight equal-length sides and four right angles, not an oblique diamond, no thickness or perspective. Friendly children's textbook illustration, clear dark outlines, flat colors and gentle paper softness. Centered with generous transparent margin. No text, numbers, equations, arrows, background or exterior shadow. Genuine transparent background. Exactly one subject. Simple, recognizable when displayed at 80px; no decorative extras."
+    },
+    {
+      "key": "walker",
+      "file": "assets/illustrations/walker.png",
+      "prompt": "Use case: scientific-educational. Asset type: simple reusable object sample for a Japanese elementary word-problem app. Create ONE elementary-age child walking calmly to the right in a side view, small backpack and comfortable shoes, entire body visible, no road or other objects. Friendly children's textbook illustration, clear dark outlines, flat colors and gentle paper softness. Centered with generous transparent margin. No text, numbers, equations, arrows, background or exterior shadow. Genuine transparent background. Exactly one subject. Simple, recognizable when displayed at 80px; no decorative extras."
+    },
+    {
+      "key": "worker",
+      "file": "assets/illustrations/worker.png",
+      "prompt": "Use case: scientific-educational. Asset type: simple reusable object sample for a Japanese elementary word-problem app. Create ONE adult person seated at a small worktable sorting plain paper, an uncluttered self-contained vignette, entire person and table visible, no other people. Friendly children's textbook illustration, clear dark outlines, flat colors and gentle paper softness. Centered with generous transparent margin. No text, numbers, equations, arrows, background or exterior shadow. Genuine transparent background. Exactly one subject. Simple, recognizable when displayed at 80px; no decorative extras."
+    },
+    {
+      "key": "price-tag",
+      "file": "assets/illustrations/price-tag.png",
+      "prompt": "Use case: scientific-educational. Asset type: simple reusable object sample for a Japanese elementary word-problem app. Create ONE blank cream price tag with a small punched hole and short string, front view, no writing, no currency symbols. Friendly children's textbook illustration, clear dark outlines, flat colors and gentle paper softness. Centered with generous transparent margin. No text, numbers, equations, arrows, background or exterior shadow. Genuine transparent background. Exactly one subject. Simple, recognizable when displayed at 80px; no decorative extras."
+    },
+    {
+      "key": "student",
+      "file": "assets/illustrations/student.png",
+      "prompt": "Use case: scientific-educational. Asset type: simple reusable object sample for a Japanese elementary word-problem app. Create ONE elementary-age child standing calmly facing front in ordinary school clothing, entire body visible, no school furniture, no other people. Friendly children's textbook illustration, clear dark outlines, flat colors and gentle paper softness. Centered with generous transparent margin. No text, numbers, equations, arrows, background or exterior shadow. Genuine transparent background. Exactly one subject. Simple, recognizable when displayed at 80px; no decorative extras."
+    }
+  ]
+}

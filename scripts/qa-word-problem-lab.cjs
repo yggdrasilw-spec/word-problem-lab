@@ -45,12 +45,19 @@ assert.throws(()=>E.model({kind:'percent',stage:4,params:[7,20]}));
   }
   for(const l of E.lessons){
    await select(l);const m=E.model(l);assert.equal(await page.locator('#question').textContent(),m.question);assert(await page.locator('#solutions').isHidden());
+   assert((await page.locator('#storyPictures img').count())>0,l.id+' illustration');
+   await page.locator('#storyPictures img').evaluateAll(imgs=>Promise.all(imgs.map(img=>img.decode())));
+   assert(await page.locator('#storyPictures img').evaluateAll(imgs=>imgs.every(img=>img.naturalWidth>0)),l.id+' image loading');
    await page.locator('#hints details').nth(2).locator('summary').click();
    if(l.id==='equal-share'){
     assert.equal(await page.locator('#hints .plate').count(),3);await page.getByRole('button',{name:'一つずつ 同じ数に配ってみる'}).click();await page.waitForFunction(()=>document.querySelectorAll('#hints .plate .dots span').length===12);assert.equal(await page.locator('#hints .plate .dots span').count(),12);await page.waitForTimeout(650);
+    assert.equal(await page.locator('#hints .plate .dots img').count(),12);assert.equal(await page.locator('#hints .dots img').count(),12);
     await page.screenshot({path:out+'/grade3-equal-share-desktop.png',fullPage:true});
    }
    if(l.id==='how-many-groups'){await page.getByRole('button',{name:'同じ数ずつ 取り分けてみる'}).click();await page.waitForFunction(()=>document.querySelectorAll('#hints .plate').length===4);assert.equal(await page.locator('#hints .plate').count(),4);}
+   if(l.id==='flowers'){assert.equal(await page.locator('#hints img[src$="red-flower.png"]').count(),4);assert.equal(await page.locator('#hints img[src$="white-flower.png"]').count(),3);await page.screenshot({path:out+'/grade1-flowers-desktop.png',fullPage:true});}
+   if(l.id==='candy-left'){assert.equal(await page.locator('#hints .dots > span').count(),8);assert.equal(await page.locator('#hints .eaten').count(),3);}
+   if(l.id==='stickers'){assert.equal(await page.locator('#hints .comparisonPairs img').count(),13);assert.equal(await page.locator('#hints .unpaired').count(),3);}
    if(l.id==='average-books'){assert(!(await page.locator('#knownNumbers').textContent()).includes('三日間の合計'));await page.getByRole('button',{name:'同じ大きさに ならしてみる'}).click();assert.deepEqual(await page.locator('#hints .averageColumns div').allTextContents(),['5','5','5']);}
    if(l.id==='fraction-pieces'){await page.getByRole('button',{name:'一本分ずつ 区切ってみる'}).click();assert.equal(await page.locator('#hints .ribbon span').count(),6);}
    if(l.id==='percentage-part')await page.screenshot({path:out+'/grade5-percent-desktop.png',fullPage:true});

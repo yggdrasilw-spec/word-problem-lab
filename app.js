@@ -66,7 +66,7 @@
     $('storyTitle').textContent=m.title||'自分で つくったお話';textStory(m,$('storyLines'));$('question').textContent=m.question;$('answerUnit').textContent=m.unit;
     $('knownNumbers').replaceChildren();m.quantities.filter(q=>q.id!==m.unknown&&!q.derived).forEach(q=>{const chip=el('div',q.label,'numberChip');chip.append(el('strong',(q.display||E.format(q.value))+q.unit));$('knownNumbers').append(chip);});
     $('targetChoices').replaceChildren();m.quantities.filter(q=>!q.derived||q.id===m.unknown).forEach(q=>{const b=el('button',q.label);b.type='button';b.dataset.role=q.id;b.setAttribute('aria-pressed','false');b.addEventListener('click',()=>{target=q.id;$('targetChoices').querySelectorAll('button').forEach(n=>n.setAttribute('aria-pressed',n===b));invalidate();});$('targetChoices').append(b);});
-    reasons();hints();save();
+    $('storyPictures').replaceChildren(WordProblemIllustrations.samples(m));reasons();hints();save();
   }
   function paths(){
     const area=$('solutionPaths');area.replaceChildren();

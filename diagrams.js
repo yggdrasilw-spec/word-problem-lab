@@ -6,16 +6,38 @@
     const box=el('div',undefined,'learningDiagram');
     const q=id=>m.quantities.find(x=>x.id===id);
     const label=id=>`${q(id).label}　${id===m.unknown?'□':q(id).display||E.format(q(id).value)}${q(id).unit}`;
-    function dots(count,cross=0){const n=el('div',undefined,'dots');for(let i=0;i<count;i++)n.append(el('span','●',i<cross?'eaten':''));return n;}
+    function dots(count,cross=0,key=WordProblemIllustrations.object(m,'a')||'candy'){
+      const n=el('div',undefined,'dots pictureDots');n.setAttribute('role','img');
+      n.setAttribute('aria-label',`${count}こ${cross?`のうち${cross}こを取る`:''}`);
+      for(let i=0;i<count;i++)n.append(WordProblemIllustrations.token(key,i<cross?'eaten':''));return n;
+    }
     function row(name,value){const line=el('div',undefined,'diagramRow');line.append(el('strong',name),el('span',value));box.append(line);return line;}
     function note(text){box.append(el('p',text,'tiny'));}
     function animate(title,run){const b=el('button',title,'quiet');b.type='button';b.addEventListener('click',()=>{run();b.disabled=true;});box.append(b);}
     if(m.diagram==='additive'&&m.stage===0){
       box.classList.add('concreteDiagram');
       if(m.kind==='decrease'){row('はじめの数',E.format(m.total)+'こ');box.append(dots(m.total,m.a));note('線のついた分が食べた分。線のない分を数えよう。');}
-      else{['a',m.kind==='compare'?'total':'b'].forEach(id=>{row(m.names[id],E.format(m[id])+m.unit);box.append(dots(m[id]));});note(m.kind==='compare'?'同じ場所から一つずつ組にして、組にならない分を見よう。':'二つのまとまりを合わせて数えよう。');}
+      else if(m.kind==='compare'){
+        const pairs=el('div',undefined,'comparisonPairs');
+        const headings=el('div',undefined,'comparisonPair');headings.append(el('strong',m.names.a),el('strong',m.names.total));pairs.append(headings);
+        for(let i=0;i<m.total;i++){
+          const pair=el('div',undefined,'comparisonPair');
+          pair.append(i<m.a?WordProblemIllustrations.token('sticker'):el('span','', 'emptyPartner'),WordProblemIllustrations.token('sticker',i>=m.a?'unpaired':''));pairs.append(pair);
+        }
+        box.append(pairs);note('横に一つずつ組にすると、相手のないシールはどれかな？');
+      }else{['a','b'].forEach(id=>{row(m.names[id],E.format(m[id])+m.unit);box.append(dots(m[id],0,WordProblemIllustrations.object(m,id)));});note('二つのまとまりを合わせて数えよう。');}
     }else if(m.diagram==='additive'){
       box.classList.add('tape');row('全体',label('total'));const parts=el('div',undefined,'partTape');['a','b'].forEach(id=>parts.append(el('span',label(id),id===m.unknown?'unknown':'')));box.append(parts);note('全体と部分の位置を見よう。模式図なので長さを測って答えを出す図ではありません。');
+      if(m.stage===1){
+        const concrete=el('div',undefined,'partPictures');
+        ['a','b'].forEach(id=>{
+          const part=el('div');part.append(el('strong',q(id).label));
+          if(id===m.unknown)part.append(el('p','□','pictureUnknown'));
+          else if(q(id).value<=20)part.append(dots(q(id).value,m.kind==='decrease'&&id==='a'?q(id).value:0,WordProblemIllustrations.object(m,id)));
+          else part.append(el('p',E.format(q(id).value)+q(id).unit));
+          concrete.append(part);
+        });box.append(concrete);note('聞かれた部分は□。分かっている部分と、全体をつなげて見よう。');
+      }
     }else if(m.kind==='groups'){
       const area=el('div',undefined,'groupArea');box.append(area);
       if(m.unknown==='total'){
@@ -30,7 +52,9 @@
           const status=el('p','0こ 配ったよ。','tiny');status.setAttribute('aria-live','polite');box.append(status);
           let count=0;function distribute(){
             if(!box.isConnected||count>=q('total').value)return;
-            supply.querySelector('.dots span')?.remove();plates[count%plates.length].querySelector('.dots').append(el('span','●','appear'));count++;
+            supply.querySelector('.dots > span')?.remove();plates[count%plates.length].querySelector('.dots').append(WordProblemIllustrations.token('candy','appear'));count++;
+            plates.forEach(plate=>plate.querySelector('.dots').setAttribute('aria-label',plate.querySelector('.dots').children.length+'こ'));
+            supply.querySelector('.dots').setAttribute('aria-label',(q('total').value-count)+'こ');
             status.textContent=`${count}こ 配ったよ。どのお皿も同じ数になるかな？`;
             if(count<q('total').value)setTimeout(distribute,200);
           }distribute();
@@ -40,14 +64,19 @@
         animate('同じ数ずつ 取り分けてみる',()=>{
           let count=0;function takeGroup(){
             if(!box.isConnected||count>=q('b').value)return;
-            for(let i=0;i<q('a').value;i++)supply.querySelector('.dots span')?.remove();
+            for(let i=0;i<q('a').value;i++)supply.querySelector('.dots > span')?.remove();
             const plate=el('div',undefined,'plate appear');plate.append(dots(q('a').value));area.append(plate);count++;
+            supply.querySelector('.dots').setAttribute('aria-label',(q('total').value-count*q('a').value)+'こ');
             if(count<q('b').value)setTimeout(takeGroup,500);
           }takeGroup();
         });
       }
     }else if(m.kind==='compound'){
-      row('一人分',`${label('a')} ＋ ${label('b')}`);const branches=el('div',undefined,'branches');branches.append(el('div','一人分を合わせる → 人数分にする'),el('div','赤を人数分・青を人数分 → 合わせる'));box.append(branches);row('人数',label('c'));row('聞かれた数',label('total'));note('二つの道筋は、同じカードを色と人数のどちらからまとめるかの違いだよ。');
+      row('一人分',`${label('a')} ＋ ${label('b')}`);
+      const cards=el('div',undefined,'onePersonCards');
+      if(q('a').value+q('b').value<=24)cards.append(dots(q('a').value,0,'red-card'),dots(q('b').value,0,'blue-card'));
+      box.append(cards);
+      const branches=el('div',undefined,'branches');branches.append(el('div','一人分を合わせる → 人数分にする'),el('div','赤を人数分・青を人数分 → 合わせる'));box.append(branches);row('人数',label('c'));row('聞かれた数',label('total'));note('赤い絵と青い絵は一人分。色と人数のどちらからまとめるかを考えよう。');
     }else if(m.kind==='area'){
       row('たてと横',`${label('a')} ／ ${label('b')}`);const grid=el('div',undefined,'unitGrid');const a=q('a').value,b=q('b').value;
       if(Number.isInteger(a)&&Number.isInteger(b)&&a<=12&&b<=12){grid.style.gridTemplateColumns=`repeat(${b},1fr)`;for(let i=0;i<a*b;i++)grid.append(el('span',''));box.append(grid);note('小さい正方形は1cm²。一列の数と、列の数から数えられるね。');}else note('1cm²の正方形を、たてと横に並べると考えよう。');

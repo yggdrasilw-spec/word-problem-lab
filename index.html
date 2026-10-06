@@ -10,7 +10,7 @@
   <section id="practice">
     <div class="lessonPicker"><label>お話をえらぶ<select id="lessonSelect"></select></label><span id="progressText"></span></div>
     <div class="learningGrid">
-      <section class="story card"><div class="sectionLabel">お話を よもう</div><h2 id="storyTitle"></h2><div id="storyLines"></div><p id="question" class="question"></p><button id="readStory" class="quiet">▶ お話を きく</button><p class="tiny">端末の読み上げ機能を使います。</p><div class="knownNumbers" id="knownNumbers"></div></section>
+      <section class="story card"><div class="sectionLabel">お話を よもう</div><h2 id="storyTitle"></h2><div id="storyLines"></div><div id="storyPictures"></div><p id="question" class="question"></p><button id="readStory" class="quiet">▶ お話を きく</button><p class="tiny">端末の読み上げ機能を使います。</p><div class="knownNumbers" id="knownNumbers"></div></section>
       <section class="solve card"><div class="sectionLabel">自分の 考え</div><form id="solveForm">
         <fieldset><legend><b>1</b> 知りたいのは 何の数？</legend><div id="targetChoices" class="choices"></div></fieldset>
         <label class="inputLabel"><b>2</b> 式を 書こう<textarea id="expression" rows="2" placeholder="数と ＋、−、＝ が使えるよ" autocomplete="off" maxlength="480"></textarea></label>
@@ -27,5 +27,5 @@
   </section>
   <section id="creator" class="card" hidden><div class="sectionLabel">学んだ考え方で 作問</div><h2>お話を つくろう</h2><p id="creatorIntro"></p><form id="createForm"><div class="creatorFields"><label>学んだ問題の型<select id="createKind"></select></label><label><span id="createALabel"></span><input id="createA" value="3" required maxlength="20"></label><label><span id="createBLabel"></span><input id="createB" value="5" required maxlength="20"></label><label hidden><span id="createCLabel"></span><input id="createC" value="4" maxlength="20"></label><label>聞きたい量<select id="createUnknown"></select></label></div><button type="submit" class="primary">このお話を つくる</button></form><div id="createPreview" aria-live="polite"></div><button id="tryCreated" hidden>作ったお話で 考えてみる →</button><p id="storageNote" class="tiny"></p></section>
   <details class="teacher card"><summary>先生・保護者の方へ</summary><p>1〜6年の代表的な概念を順に扱う44問の試作教材です。全単元を網羅する教材ではありません。式・答え・理由を確認して次へ進み、現在の学年の問題が終わると次の学年と作問が開きます。</p><p>等分除と包含除、割合と比などの意味の違いに合わせて、図と説明を変えています。理由の選択は支援付きの説明です。自力で説明できることを保証する判定ではありません。</p><p>登録した道筋、交換・結合した式、□を使う関係式、途中の式を認めます。意味のある全ての自由な別解を自動判定できる段階ではありません。学習記録と作問はこのブラウザに保存します。</p><a href="docs/research-and-design.md">調査・設計資料</a><p><button id="clearProgress" class="quiet">この教材の 学習記録を消す</button></p></details>
-</main><footer>お話のイメージから、式にする理由へ</footer><script src="engine.js"></script><script src="curriculum.js"></script><script src="diagrams.js"></script><script src="app.js"></script>
+</main><footer>お話のイメージから、式にする理由へ</footer><script src="engine.js"></script><script src="curriculum.js"></script><script src="illustrations.js"></script><script src="diagrams.js"></script><script src="app.js"></script>
 </body></html>
