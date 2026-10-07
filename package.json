@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "description": "小学校1〜6年の文章題で、立式の理由を段階的に学ぶ試作教材",
-  "scripts": { "test": "node scripts/qa-word-problem-lab.cjs" },
+  "scripts": { "test": "node scripts/qa-word-problem-lab.cjs", "test:bridge": "node scripts/qa-diagram-bridge.cjs", "sync:diagram": "node scripts/sync-diagram.cjs" },
   "engines": { "node": ">=20" },
   "devDependencies": { "playwright": "^1.51.1" }
 }

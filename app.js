@@ -66,7 +66,7 @@
     $('storyTitle').textContent=m.title||'自分で つくったお話';textStory(m,$('storyLines'));$('question').textContent=m.question;$('answerUnit').textContent=m.unit;
     $('knownNumbers').replaceChildren();m.quantities.filter(q=>q.id!==m.unknown&&!q.derived).forEach(q=>{const chip=el('div',q.label,'numberChip');chip.append(el('strong',(q.display||E.format(q.value))+q.unit));$('knownNumbers').append(chip);});
     $('targetChoices').replaceChildren();m.quantities.filter(q=>!q.derived||q.id===m.unknown).forEach(q=>{const b=el('button',q.label);b.type='button';b.dataset.role=q.id;b.setAttribute('aria-pressed','false');b.addEventListener('click',()=>{target=q.id;$('targetChoices').querySelectorAll('button').forEach(n=>n.setAttribute('aria-pressed',n===b));invalidate();});$('targetChoices').append(b);});
-    $('storyPictures').replaceChildren(WordProblemIllustrations.samples(m));reasons();hints();save();
+    $('storyPictures').replaceChildren(WordProblemIllustrations.samples(m));reasons();hints();save();window.WordProblemDiagramBridge?.load(m);
   }
   function paths(){
     const area=$('solutionPaths');area.replaceChildren();
@@ -123,7 +123,7 @@
   });
   $('tryCreated').addEventListener('click',()=>{if(!draft)return;mode('practice');load(draft);});
   $('readStory').addEventListener('click',()=>speak([...m.story,m.question].join('。')));
-  $('clearProgress').addEventListener('click',()=>{completed.clear();stage=0;mode('practice');clearDraft();load(E.lessons[0]);});
+  $('clearProgress').addEventListener('click',()=>{completed.clear();window.WordProblemDiagramBridge?.clear();stage=0;mode('practice');clearDraft();load(E.lessons[0]);});
   const savedStage=Number(stored.stage);stage=Number.isInteger(savedStage)&&savedStage>=0&&savedStage<=5&&E.lessons.filter(l=>l.stage<savedStage).every(l=>completed.has(l.id))?savedStage:0;
   const resume=E.lessons.find((l,i)=>l.id===stored.currentId&&l.stage===stage&&accessible(i))||E.lessons.find(l=>l.stage===stage);load(resume);
 })();
