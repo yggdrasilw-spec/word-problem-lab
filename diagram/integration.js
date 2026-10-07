@@ -7,6 +7,7 @@
   const style=document.createElement('style');
   style.textContent='body.embeddedLesson header .home,body.embeddedLesson #settingsButton,body.embeddedLesson #extendButton,body.embeddedLesson #another,body.embeddedLesson #workshopAnother,body.embeddedLesson #workshopLesson,body.embeddedLesson #workshopMenu{display:none!important}.integrationBar{position:sticky;top:0;z-index:20;padding:10px;background:#fff;border-bottom:2px solid #18775e;display:flex;gap:12px;align-items:center;flex-wrap:wrap}';
   document.head.append(style);document.body.classList.add('embeddedLesson');
+  document.querySelector('.groupsStandaloneLink')?.remove();
   const bar=document.createElement('div');bar.className='integrationBar';
   const caption=document.createElement('span');caption.textContent='同じお話で、図をつくろう';
   const back=document.createElement('button');back.textContent='この図を お話へもどす';

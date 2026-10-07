@@ -46,13 +46,22 @@ const server=http.createServer((req,res)=>{const file=path.resolve(root,'.'+deco
   await page.locator('#createA').fill('9');await page.locator('#createB').fill('2');await page.locator('#createForm button[type=submit]').click();await page.locator('#tryCreated').click();
   assert.equal(await page.locator('#returnedDiagram img').count(),0);
   const custom=await launch();assert.equal(await custom.locator('body').evaluate(()=>window.TapeLessonApp.current().left),9);await page.locator('#closeDiagram').click();
-  await seed(E.lessons.find(l=>l.id==='same-groups'));assert(await page.locator('#openDiagram').isHidden());
+  for(const l of E.lessons.filter(l=>l.kind==='groups')){
+   await seed(l);const gf=await launch(),m=E.model(l);assert((await gf.locator('#story').textContent()).includes(m.question));
+   await gf.getByRole('button',{name:m.names[m.unknown==='total'?'total':'a']+'から',exact:true}).click();assert((await gf.locator('#status').textContent()).length>0);
+   await gf.getByRole('button',{name:m.names[m.unknown==='total'?'a':'total']+'から',exact:true}).click();await gf.getByRole('button',{name:'まとまりを 図にする',exact:true}).click();
+   const count=await gf.locator('.groupTape').count();assert.equal(count,m.unknown==='b'?2:m.values.b);
+   for(const r of ['a','b','total']){await gf.locator('[data-fact="'+r+'"]').click();await gf.locator('[data-range="'+r+'"]').click();}
+   assert((await gf.locator('#figure').textContent()).includes('□'));
+   await gf.locator('#check').click();await gf.locator('#back').click();await page.locator('.diagramDialog').waitFor({state:'hidden'});assert.equal(await page.locator('#returnedDiagram img').count(),1);assert((await page.locator('#returnedDiagram').textContent()).includes('関係を確かめました'));
+  }
+  await seed(E.lessons.find(l=>l.id==='integer-times'));assert(await page.locator('#openDiagram').isHidden());
   await seed(E.lessons[0]);await page.setViewportSize({width:390,height:844});await launch();assert(await page.locator('.diagramDialog').isVisible());
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await page.locator('#closeDiagram').click();
   await page.locator('.teacher summary').click();await page.locator('#clearProgress').click();assert.equal(await page.locator('#returnedDiagram img').count(),0);
   // file:// remains supported, without a web server.
   await page.goto(require('node:url').pathToFileURL(path.join(root,'index.html')).href);const offline=await launch();await offline.locator('body').evaluate(()=>window.TapeLessonApp.start(window.TapeLessonApp.current(),7));
   await offline.getByRole('button',{name:'この図を お話へもどす',exact:true}).click();await page.locator('.diagramDialog').waitFor({state:'hidden'});assert.equal(await page.locator('#returnedDiagram img').count(),1);
-  assert.deepEqual(errors,[]);console.log(JSON.stringify({passed:true,stories:compatible.length,drawAndReturn:true,draftPreserved:true,persistence:true,mobile:true,fileMode:true,custom:true,changedQuestionRejected:true}));
+  assert.deepEqual(errors,[]);console.log(JSON.stringify({passed:true,additiveStories:compatible.length,groupStories:E.lessons.filter(l=>l.kind==='groups').length,drawAndReturn:true,draftPreserved:true,persistence:true,mobile:true,fileMode:true,custom:true,changedQuestionRejected:true}));
  }finally{await browser.close();server.close();}
 })().catch(e=>{server.close();console.error(e);process.exitCode=1;});
